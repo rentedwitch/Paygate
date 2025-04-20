@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "956732960656",
+    "project_id": "paygate-672c1",
+    "storage_bucket": "paygate-672c1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:956732960656:android:31ada3b4bf39969b540d15",
+        "android_client_info": {
+          "package_name": "com.example.paygate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrNLmj1csnvz6VbDBROJzmLBraF1cj--M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
