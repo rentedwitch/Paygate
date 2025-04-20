@@ -43,7 +43,8 @@ dependencies {
     implementation(libs.androidx.appcompat) // AndroidX AppCompat library
     implementation(libs.material) // Material Components
     implementation(libs.androidx.activity) // AndroidX Activity
-    implementation(libs.androidx.constraintlayout) // ConstraintLayout
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.firestore) // ConstraintLayout
 
     // Testing dependencies
     testImplementation(libs.junit) // JUnit for unit tests

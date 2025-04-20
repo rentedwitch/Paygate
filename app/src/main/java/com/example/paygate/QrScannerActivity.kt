@@ -1,3 +1,5 @@
+package com.example.paygate
+
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -12,7 +14,6 @@ import com.journeyapps.barcodescanner.CompoundBarcodeView
 class QrScannerActivity : AppCompatActivity() {
 
     private lateinit var barcodeView: CompoundBarcodeView
-
     private val CAMERA_PERMISSION_REQUEST_CODE = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,11 +22,15 @@ class QrScannerActivity : AppCompatActivity() {
 
         barcodeView = findViewById(R.id.barcode_scanner)
 
-        // Request Camera Permission if not granted
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST_CODE)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA),
+                CAMERA_PERMISSION_REQUEST_CODE
+            )
         } else {
-            // Start scanning if permission is already granted
             startScanning()
         }
 
@@ -33,13 +38,12 @@ class QrScannerActivity : AppCompatActivity() {
             override fun barcodeResult(result: BarcodeResult?) {
                 result?.let {
                     barcodeView.pause()
-                    // Handle the scanned QR code content (result.text)
-                    Toast.makeText(this@QrScannerActivity, "QR Code: ${result.text}", Toast.LENGTH_LONG).show()
-                    // You can add your logic here to process the QR content
+                    Toast.makeText(this@QrScannerActivity, "Scanned: ${result.text}", Toast.LENGTH_LONG).show()
+                    // Restart scanning after short delay if needed
                 }
             }
 
-            override fun possibleResultPoints(resultPoints: List<com.google.zxing.ResultPoint>) {}
+            override fun possibleResultPoints(resultPoints: MutableList<com.google.zxing.ResultPoint>?) {}
         })
     }
 
@@ -49,9 +53,10 @@ class QrScannerActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Resume scanning if permission is granted
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            startScanning()
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            barcodeView.resume()
         }
     }
 
@@ -60,15 +65,17 @@ class QrScannerActivity : AppCompatActivity() {
         barcodeView.pause()
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, start scanning
                 startScanning()
             } else {
-                // Permission denied, show a message or handle accordingly
-                Toast.makeText(this, "Camera permission is required to scan QR codes", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Camera permission is required", Toast.LENGTH_SHORT).show()
             }
         }
     }

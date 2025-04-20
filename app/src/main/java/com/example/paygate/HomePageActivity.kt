@@ -2,6 +2,7 @@ package com.example.paygate
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 class HomePageActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private val REQUEST_CONTACT = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,13 @@ class HomePageActivity : AppCompatActivity() {
             startActivity(Intent(this, CheckBalanceActivity::class.java))
         }
 
+        // Contacts Button
+        findViewById<Button>(R.id.btncontacts).setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
+            startActivityForResult(intent, REQUEST_CONTACT)
+        }
+
         // Logout Button
         findViewById<Button>(R.id.btnLogout).setOnClickListener {
             // Sign out the user from Firebase
@@ -52,6 +61,28 @@ class HomePageActivity : AppCompatActivity() {
 
             // Navigate back to MainActivity (login screen)
             navigateToLoginScreen()
+        }
+    }
+
+    // Handle contact selection result
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CONTACT && resultCode == RESULT_OK) {
+            data?.data?.let { contactUri ->
+                val projection = arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER)
+                contentResolver.query(contactUri, projection, null, null, null)?.use { cursor ->
+                    if (cursor.moveToFirst()) {
+                        val numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+                        val number = cursor.getString(numberIndex)
+
+                        // Now pass it to UpiMobileTransferActivity
+                        val upiIntent = Intent(this, UpiMobileTransferActivity::class.java)
+                        upiIntent.putExtra("selectedMobile", number)
+                        startActivity(upiIntent)
+                    }
+                }
+            }
         }
     }
 
