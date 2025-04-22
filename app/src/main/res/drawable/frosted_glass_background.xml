@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Semi-transparent base -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#99FFFFFF"/> <!-- More translucent -->
+            <corners android:radius="20dp"/>
+        </shape>
+    </item>
+
+    <!-- Soft outer glow effect -->
+    <item android:left="2dp" android:right="2dp" android:top="2dp" android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#33FFFFFF"
+                android:endColor="#00FFFFFF"
+                android:angle="90"/>
+            <corners android:radius="20dp"/>
+        </shape>
+    </item>
+</layer-list>

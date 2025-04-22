@@ -4,13 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class HomePageActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
     private val REQUEST_CONTACT = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,15 +21,25 @@ class HomePageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home_page)
 
         auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
         // Check if user is logged in, if not navigate to login screen
         if (auth.currentUser == null) {
             navigateToLoginScreen()
         }
 
+        // Fetch the user's name from Firestore
+        fetchUserName()
+
         // QR Scanner Button
         findViewById<Button>(R.id.btnQrScanner).setOnClickListener {
             startActivity(Intent(this, QrScannerActivity::class.java))
+        }
+
+        // My QR Button
+        findViewById<Button>(R.id.btnMyQR).setOnClickListener {
+            // Start MyQrActivity when the button is clicked
+            startActivity(Intent(this, MyQrActivity::class.java))
         }
 
         // Bank Transfer Button
@@ -42,6 +55,11 @@ class HomePageActivity : AppCompatActivity() {
         // Check Balance Button
         findViewById<Button>(R.id.btnCheckBalance).setOnClickListener {
             startActivity(Intent(this, CheckBalanceActivity::class.java))
+        }
+
+        // Add Money Button
+        findViewById<Button>(R.id.btnAddmoney).setOnClickListener {
+            startActivity(Intent(this, AddMoneyActivity::class.java))
         }
 
         // Contacts Button
@@ -61,6 +79,24 @@ class HomePageActivity : AppCompatActivity() {
 
             // Navigate back to MainActivity (login screen)
             navigateToLoginScreen()
+        }
+    }
+
+    // Fetch user's name from Firestore
+    private fun fetchUserName() {
+        val userId = auth.currentUser?.uid
+        if (userId != null) {
+            firestore.collection("users").document(userId).get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        val userName = document.getString("name")
+                        val greetingTextView = findViewById<TextView>(R.id.greetingText)
+                        greetingTextView.text = "Hi, $userName"  // Set the greeting message
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error fetching user info: ${e.message}", Toast.LENGTH_LONG).show()
+                }
         }
     }
 

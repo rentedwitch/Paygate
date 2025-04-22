@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,10 +8,6 @@
     android:background="@drawable/insta_gradient"
     android:padding="24dp"
     tools:context=".MainActivity">
-
-    <!-- Top Image -->
-
-    <!-- Form Section -->
 
     <ImageView
         android:id="@+id/topImage"
@@ -31,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:alpha="1"
-        android:background="@drawable/rounded_edittext"
+        android:background="@drawable/frosted_glass_background"
         android:clipToPadding="false"
         android:elevation="8dp"
         android:orientation="vertical"
@@ -43,42 +38,49 @@
         app:layout_constraintTop_toBottomOf="@id/topImage"
         app:layout_constraintVertical_bias="0.304">
 
+        <!-- 🔹 New Name Field -->
+
+
         <EditText
             android:id="@+id/editPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:background="@drawable/rounded_edittext"
-            android:hint="Enter Mobile Number"
+            android:background="@drawable/red_edittext_border"
+            android:hint="Mobile No:"
             android:inputType="phone"
             android:padding="12dp"
-            android:textColorHint="#000000" />
+            android:textColorHint="#000000"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/btnSendOtp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:backgroundTint="#FD1D1D"
-            android:text="Send OTP" />
+            android:backgroundTint="#A08CDE"
+            android:text="Send OTP"
+            android:textColor="@color/white"/>
 
         <EditText
             android:id="@+id/editOtp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:background="@drawable/rounded_edittext"
-            android:hint="Enter OTP"
+            android:background="@drawable/red_edittext_border"
+            android:hint="OTP"
             android:inputType="number"
             android:padding="12dp"
-            android:textColorHint="#000000" />
+            android:textColorHint="#000000"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/btnVerifyOtp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FD1D1D"
-            android:text="Verify OTP" />
+            android:backgroundTint="#A08CDE"
+            android:text="Verify OTP"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

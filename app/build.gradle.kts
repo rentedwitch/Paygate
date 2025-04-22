@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)  // Keep this line for Android app plugin
-    alias(libs.plugins.kotlin.android) // Kotlin plugin
-    id("com.google.gms.google-services") // Google Services for Firebase
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -23,7 +23,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"  // Ensure you have the custom ProGuard rules here
+                "proguard-rules.pro"
             )
         }
     }
@@ -39,24 +39,27 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx) // AndroidX Core library
-    implementation(libs.androidx.appcompat) // AndroidX AppCompat library
-    implementation(libs.material) // Material Components
-    implementation(libs.androidx.activity) // AndroidX Activity
+    // AndroidX and Material dependencies
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.firebase.firestore) // ConstraintLayout
 
-    // Testing dependencies
-    testImplementation(libs.junit) // JUnit for unit tests
-    androidTestImplementation(libs.androidx.junit) // AndroidJUnitRunner for instrumentation tests
-    androidTestImplementation(libs.androidx.espresso.core) // Espresso for UI testing
+    // Firebase BOM (must be before other Firebase dependencies)
+    implementation(platform("com.google.firebase:firebase-bom:33.12.0"))
 
-    // Firebase dependencies
-    implementation("com.google.firebase:firebase-analytics") // Firebase Analytics
-    implementation(platform("com.google.firebase:firebase-bom:33.12.0")) // Firebase BOM for version management
-    implementation("com.google.firebase:firebase-auth") // Firebase Authentication
+    // Firebase libraries (version managed by BOM)
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-analytics")
 
-    // ZXing (QR Scanner) dependencies
-    implementation("com.journeyapps:zxing-android-embedded:4.1.0") // ZXing Android Embedded
-    implementation("com.google.zxing:core:3.3.0") // ZXing core library
+    // ZXing QR Scanner
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation("com.google.zxing:core:3.3.0")
+
+    // Testing
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

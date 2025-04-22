@@ -1,12 +1,15 @@
 package com.example.paygate
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.firebase.firestore.FirebaseFirestore
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.CompoundBarcodeView
@@ -15,6 +18,8 @@ class QrScannerActivity : AppCompatActivity() {
 
     private lateinit var barcodeView: CompoundBarcodeView
     private val CAMERA_PERMISSION_REQUEST_CODE = 101
+    private val db = FirebaseFirestore.getInstance()
+    private var hasScanned = false // prevent multiple scans
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +41,44 @@ class QrScannerActivity : AppCompatActivity() {
 
         barcodeView.decodeContinuous(object : BarcodeCallback {
             override fun barcodeResult(result: BarcodeResult?) {
+                if (hasScanned) return  // prevent multiple triggers
                 result?.let {
+                    hasScanned = true
                     barcodeView.pause()
-                    Toast.makeText(this@QrScannerActivity, "Scanned: ${result.text}", Toast.LENGTH_LONG).show()
-                    // Restart scanning after short delay if needed
+
+                    val scannedUid = result.text
+                    Log.d("QrScanner", "Scanned UID: $scannedUid")
+
+                    db.collection("users").document(scannedUid).get()
+                        .addOnSuccessListener { document ->
+                            if (document.exists()) {
+                                val name = document.getString("name")
+                                val bankBalance = document.getDouble("bankBalance")
+
+                                if (name != null && bankBalance != null) {
+                                    val intent = Intent(this@QrScannerActivity, MoneyTransferActivity::class.java)
+                                    intent.putExtra("receiverName", name)
+                                    intent.putExtra("receiverUid", scannedUid)
+                                    intent.putExtra("receiverBankBalance", bankBalance)
+                                    startActivity(intent)
+                                    finish() // close scanner so user doesn't come back to it
+                                } else {
+                                    hasScanned = false
+                                    Toast.makeText(this@QrScannerActivity, "Invalid user data", Toast.LENGTH_SHORT).show()
+                                    barcodeView.resume()
+                                }
+                            } else {
+                                hasScanned = false
+                                Toast.makeText(this@QrScannerActivity, "User not found", Toast.LENGTH_SHORT).show()
+                                barcodeView.resume()
+                            }
+                        }
+                        .addOnFailureListener { e ->
+                            hasScanned = false
+                            Log.e("QrScanner", "Error fetching user data: ${e.message}")
+                            Toast.makeText(this@QrScannerActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                            barcodeView.resume()
+                        }
                 }
             }
 
