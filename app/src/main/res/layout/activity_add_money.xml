@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    android:background="@drawable/insta_gradient">
+    android:background="@color/black">
 
     <!-- Top Image -->
     <ImageView
         android:id="@+id/topImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:src="@drawable/cool"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="370dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/paygate_logo_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <!-- Amount Input -->
     <EditText

@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    android:background="@drawable/insta_gradient">
+    android:background="@color/black">
 
     <!-- Top Image -->
     <ImageView
         android:id="@+id/topImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/cool"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="370dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/paygate_logo_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp" />
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Mobile Number EditText -->
     <EditText
@@ -25,13 +26,13 @@
         android:layout_height="wrap_content"
         android:hint="Enter Mobile Number"
         android:inputType="phone"
-        android:background="@drawable/rounded_edittext"
         android:padding="12dp"
-        android:textColorHint="#000000"
+        android:backgroundTint="@color/white"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/topImage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Amount EditText -->
     <EditText
@@ -40,13 +41,13 @@
         android:layout_height="wrap_content"
         android:hint="Enter Amount"
         android:inputType="numberDecimal"
-        android:background="@drawable/rounded_edittext"
         android:padding="12dp"
-        android:textColorHint="#000000"
+        android:backgroundTint="@color/white"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/editMobile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Send UPI Button -->
     <Button
@@ -55,8 +56,8 @@
         android:layout_height="wrap_content"
         android:text="Send UPI"
         android:textSize="16sp"
-        android:backgroundTint="#FD1D1D"
-        android:textColor="@color/white"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/editAmount"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -5,40 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    android:background="@drawable/insta_gradient">
+    android:background="@color/black">
     <ImageView
         android:id="@+id/topImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/cool"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="370dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/paygate_logo_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp" />
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtBalance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="328dp"
+        android:gravity="center"
         android:text="Available Balance: ₹0.00"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="200dp"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnRefreshBalance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Refresh Balance"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#FD1D1D"
+        android:text="Refresh Balance"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/txtBalance"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtBalance" />
 </androidx.constraintlayout.widget.ConstraintLayout>

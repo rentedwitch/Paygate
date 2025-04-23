@@ -58,12 +58,12 @@ class HomePageActivity : AppCompatActivity() {
         }
 
         // Add Money Button
-        findViewById<Button>(R.id.btnAddmoney).setOnClickListener {
+        findViewById<Button>(R.id.btnAddMoney).setOnClickListener {
             startActivity(Intent(this, AddMoneyActivity::class.java))
         }
 
         // Contacts Button
-        findViewById<Button>(R.id.btncontacts).setOnClickListener {
+        findViewById<Button>(R.id.btnContacts).setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
             startActivityForResult(intent, REQUEST_CONTACT)

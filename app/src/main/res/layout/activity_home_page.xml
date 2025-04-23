@@ -1,23 +1,24 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="@drawable/insta_gradient">
+    android:background="@color/black"
+    android:padding="24dp">
 
     <!-- Top Image -->
 
-    <!-- Greeting Text -->
+    <!-- Grid Layout for 4 buttons -->
 
     <ImageView
         android:id="@+id/topImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:src="@drawable/cool"
+        android:layout_width="370dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/paygate_logo_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,131 +26,243 @@
         android:id="@+id/greetingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Hi, User"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/topImage"
+        app:layout_constraintBottom_toTopOf="@id/gridLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
-    <!-- Grid Layout for buttons -->
 
-    <!-- Contacts Button -->
     <GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="match_parent"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="100dp"
         android:alignmentMode="alignMargins"
-        android:columnCount="2"
+        android:columnCount="3"
         android:orientation="horizontal"
-        android:rowCount="3"
+        android:rowCount="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/greetingText">
+        app:layout_constraintTop_toBottomOf="@id/topImage">
 
-        <!-- QR Scanner Button -->
-        <Button
-            android:id="@+id/btnQrScanner"
+        <!-- 1. Bank Transfer -->
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/white"
-            android:text="QR Scanner"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:layout_margin="8dp">
 
-        <!-- My QR Button -->
-        <Button
-            android:id="@+id/btnMyQR"
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/white"
-            android:text="My QR"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/iconBankTransfer"
+                android:layout_width="123dp"
+                android:layout_height="61dp"
+                android:src="@drawable/bticon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Bank Transfer Button -->
-        <Button
-            android:id="@+id/btnBankTransfer"
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/white"
-            android:text="Bank Transfer"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            <Button
+                android:id="@+id/btnBankTransfer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/zxing_transparent"
+                android:text="Bank Transfer"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iconBankTransfer" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Mobile UPI Button -->
-        <Button
-            android:id="@+id/btnUpiMobile"
+        <!-- 2. QR Scanner -->
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/white"
-            android:text="Mobile UPI"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:layout_margin="8dp">
 
-        <!-- Add Money Button (Adjusting width to match other buttons) -->
-        <Button
-            android:id="@+id/btnAddmoney"
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/white"
-            android:text="Add Money"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/iconQR"
+                android:layout_width="104dp"
+                android:layout_height="58dp"
+                android:src="@drawable/qrqr"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Check Balance Button -->
-        <Button
-            android:id="@+id/btnCheckBalance"
+            <Button
+                android:id="@+id/btnQrScanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/zxing_transparent"
+                android:text="Scan any QR code"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iconQR" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 3. Contacts -->
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/white"
-            android:text="Check Balance"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:id="@+id/iconContacts"
+                android:layout_width="99dp"
+                android:layout_height="61dp"
+                android:src="@drawable/cicon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnContacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/zxing_transparent"
+                android:text="Contacts"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iconContacts" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 4. Check Balance -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:id="@+id/iconCheckBalance"
+                android:layout_width="84dp"
+                android:layout_height="52dp"
+                android:src="@drawable/cbicon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnCheckBalance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/zxing_transparent"
+                android:text="Check Balance"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iconCheckBalance" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 5. Add Money -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:id="@+id/iconAddMoney"
+                android:layout_width="80dp"
+                android:layout_height="52dp"
+                android:src="@drawable/amicon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnAddMoney"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/zxing_transparent"
+                android:text="Add Money"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iconAddMoney" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 6. Mobile UPI -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:id="@+id/iconMobileUpi"
+                android:layout_width="61dp"
+                android:layout_height="51dp"
+                android:src="@drawable/muicon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnUpiMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/zxing_transparent"
+                android:text="Mobile UPI"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iconMobileUpi" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </GridLayout>
 
     <Button
-        android:id="@+id/btncontacts"
+        android:id="@+id/btnMyQR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/white"
-        android:text="Contacts"
-        android:textColor="@color/black"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@android:color/white"
+        android:text="My QR"
+        android:textColor="@android:color/black"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/gridLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/gridLayout"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <!-- Logout Button -->
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="#FF0000"
         android:text="Logout"
         android:textColor="@android:color/white"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/btncontacts"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/gridLayout"
+        app:layout_constraintVertical_bias="0.74" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,18 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    android:background="@drawable/insta_gradient">
+    android:background="@color/black">
 
     <!-- Top Image -->
     <ImageView
         android:id="@+id/topImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/cool"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="362dp"
+        android:layout_height="314dp"
+        android:src="@drawable/paygate_logo_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Username -->
     <TextView
@@ -69,8 +68,8 @@
         android:layout_height="wrap_content"
         android:text="Send"
         android:textSize="16sp"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@color/button_color"
+        android:textColor="@android:color/black"
+        android:backgroundTint="@color/white"
         app:layout_constraintTop_toBottomOf="@id/confirmAmountEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -6,16 +6,23 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="24dp"
-    android:background="@drawable/insta_gradient">
+    android:background="@color/black">
 
     <!-- TextView to display the name -->
+    <ImageView
+        android:id="@+id/topImage"
+        android:layout_width="370dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/paygate_logo_icon" />
+
     <TextView
         android:id="@+id/userNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="User"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textColor="@android:color/white"
         android:layout_marginBottom="16dp"
         android:textStyle="bold"/>
 
@@ -24,5 +31,6 @@
         android:id="@+id/qrImageView"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:contentDescription="QR Code" />
+        android:contentDescription="QR Code"
+        />
 </LinearLayout>
