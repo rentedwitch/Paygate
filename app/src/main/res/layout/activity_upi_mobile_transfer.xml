@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:text="Send UPI"
         android:textSize="16sp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#E4E9CB"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/editAmount"
         app:layout_constraintStart_toStartOf="parent"
