@@ -1,3 +1,4 @@
+#Test Phone no: +11234567890  OTP:123456
 Paygate
 Paygate is a collaborative project developed as part of our ITW Lab assignment. The primary objective is to simulate the core functionalities of a digital payment application, similar to Google Pay.
 
